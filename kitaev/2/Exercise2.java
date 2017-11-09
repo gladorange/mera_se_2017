@@ -6,7 +6,7 @@ public class Exercise2 {
         int i = 0;
         int sum = 0;
         while (i < num) {
-            if (i % 2 != 0) {
+            if (i % 2 == 0) {
                 System.out.println(i);
                 sum += i;
             }
