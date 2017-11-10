@@ -37,13 +37,6 @@ public class Book {
         return author;
     }
 
-    public Book() {
-        this.name = "";
-        this.year = "";
-        this.numberOfPages = 0;
-        this.author = new Author();
-    }
-
     public Book(String name, String year, int numberOfPages, Author author) {
         this.name = name;
         this.year = year;
