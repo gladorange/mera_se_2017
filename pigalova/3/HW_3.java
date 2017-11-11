@@ -61,7 +61,7 @@ public class HW_3 {
 
         System.out.println("numOfAuthors = " + numOfAuthors);
 
-        Author authors[];
+
         int allstr=DB + RB + JL;
         System.out.println("All str " +allstr);
 
