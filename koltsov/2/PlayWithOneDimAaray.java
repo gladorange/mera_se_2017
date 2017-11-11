@@ -7,7 +7,7 @@ public class PlayWithOneDimAaray {
         int max = arr[0];
         int indexOfMax = 0;
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < arr.length; i++) {
             if (arr[i] > max) {
                 max = arr[i];
                 indexOfMax = i;

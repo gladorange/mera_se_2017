@@ -8,23 +8,19 @@ public class BasicExpressionsWithLong {
         Long x2 = -17L;
 
         if (x1 % 2 == 0) {
-            Long sum = x1 + x2;
-            System.out.println(sum);
+            System.out.println(x1 + x2);
         }
 
         if (x2 % 2 == 0) {
-            Long sub = x1 - x2;
-            System.out.println(sub);
+            System.out.println(x1 - x2);
         }
 
         if (x1 > 0) {
-            Long mul = x1 * x2;
-            System.out.println(mul);
+            System.out.println(x1 * x2);
         }
 
         if (x2 > 0) {
-            Long div = x1 / x2;
-            System.out.println(div);
+            System.out.println(x1 / x2);
         }
     }
 }
