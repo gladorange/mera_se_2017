@@ -1,21 +1,20 @@
+package bookstore;
+
 import java.util.Date;
 
 public class Person {
     private static int countPersons;
 
-    private String  firstName;
-    private String  secondName;
-    private String  country;
-    private Date birthday;
+    protected String    firstName;
+    protected String    secondName;
+    protected String    country;
+    protected Date      birthday;
 
     public Person() {
         this("null", "null", "null", new Date(0));
-        //System.out.println("Person constructor without arguments");
     }
 
     public Person(String firstName, String secondName, String country, Date birthday) {
-        //System.out.println("Person constructor with arguments");
-
         countPersons++;
         this.firstName = firstName;
         this.secondName = secondName;
