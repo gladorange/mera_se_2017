@@ -8,7 +8,7 @@ public class Prog1 {
         if (b % 2 == 0) {
             System.out.println(a - b);
         }
-        if (a < 0) {
+        if (a > 0) {
             System.out.println(a * b);
         }
         if (b > 0) {

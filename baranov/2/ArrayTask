@@ -1,0 +1,14 @@
+package com.company;
+
+public class ArrayTask {
+
+    public static void main(String[] args) {
+	int myArray[] = {1,2,3,4,100,-3,155,7,8,9};
+	int maxElem = 0;
+	for(int i=0; i<10; i++) {
+	    if(myArray[i]>100) break;
+	    if(myArray[i]>myArray[maxElem]) {maxElem=i;}
+    }
+    System.out.println(maxElem);
+    }
+}

@@ -1,0 +1,16 @@
+package com.company;
+
+public class ForAndIf {
+    public static void main (String []args){
+        int startValue = 7, j=0;
+        for(int i=0; i<=startValue; i++)
+        {
+            if(i%2 == 1){
+                System.out.println(i);}
+            else {
+                j = j+i;
+                }
+        }
+    System.out.println(j);
+    }
+}
