@@ -6,13 +6,11 @@ public class Book {
     private int date;
     private int str;
 
-    Author Author1;
+    Author author;
 
     Book( )
     {
-        bookname = "name";
-        date = 1191;
-        str = 200;
+
     }
 
     public Book(String bname, int bdate, int bstr)
