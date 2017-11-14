@@ -7,13 +7,7 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws ParseException {
 
-        Shop shopBooksPictures = new Shop();
-
-        ArrayList<ItemForSale> booksForSale = createBooks();
-        ArrayList<ItemForSale> picturesForSale = createPictures();
-
-        shopBooksPictures.getItemsForSale().addAll(booksForSale);
-        shopBooksPictures.getItemsForSale().addAll(picturesForSale);
+        Shop shopBooksPictures = new Shop(createBooks(), createPictures());
 
         shopBooksPictures.showItems();
 
