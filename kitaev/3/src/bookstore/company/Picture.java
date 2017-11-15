@@ -1,16 +1,8 @@
 package bookstore.company;
 
 public class Picture extends ItemForSale {
-    private String name, year, style;
+    private String style;
     private Painter painter;
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
 
     public void setStyle(String style) {
         this.style = style;
@@ -18,14 +10,6 @@ public class Picture extends ItemForSale {
 
     public void setPainter(Painter painter) {
         this.painter = painter;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getYear() {
-        return year;
     }
 
     public String getStyle() {
