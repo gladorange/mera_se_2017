@@ -11,9 +11,7 @@ public class Shop {
     }
 
     public void setItemsForSale(ItemForSale[] args) {
-        itemsForSale = new ArrayList<ItemForSale>() {{
-            this.addAll(Arrays.asList(args));
-        }};
+        itemsForSale = new ArrayList<>(Arrays.asList(args));
     }
 
     public ArrayList<ItemForSale> getItemsForSale() {
