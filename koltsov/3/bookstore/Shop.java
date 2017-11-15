@@ -13,6 +13,13 @@ public class Shop {
         this(new ArrayList<ItemForSale>());
     }
 
+    public Shop(ArrayList<ItemForSale> itemsForSale1, ArrayList<ItemForSale> itemsForSale2) {
+        this(new ArrayList<ItemForSale>());
+
+        itemsForSale.addAll(itemsForSale1);
+        itemsForSale.addAll(itemsForSale2);
+    }
+
     public void showItems() {
         for (ItemForSale item : itemsForSale) {
             System.out.println(item.getDescription() + " - " + item.getPrice() + " rubles");
