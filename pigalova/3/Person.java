@@ -9,12 +9,7 @@ public class Person {
 
     Person()
     {
-        firstname = "Ivanov";
-        surname = "Misha;";
-        country ="Russia";
-        year = 1991;
 
-        setNumbers(this);
 
     }
 

@@ -2,8 +2,7 @@ package shop;
 
 public class Author extends Person
 {
-    public Book book [];
-
+    private Book book [];
 
 
     public Author(String fname, String sname, String countr, int yr, Book _book[])
@@ -13,4 +12,11 @@ public class Author extends Person
 
     }
 
+    public Book[] getBook() {
+        return book;
+    }
+
+    public void setBook(Book[] book) {
+        this.book = book;
+    }
 }
