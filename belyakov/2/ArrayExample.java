@@ -28,6 +28,6 @@ public class ArrayExample {
             }
         }
         
-        System.out.println("Max number index is: " + maxNumberIndex);
+        System.out.println("Max number length is: " + maxNumberIndex);
     }    
 }

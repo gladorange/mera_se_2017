@@ -21,8 +21,8 @@ public class Author extends Person {
         this.books = books;
     }
 
-    public Book createBook(String name, String year, int numberOfPages) {
-        Book newBook = new Book(name, year, numberOfPages, this);
+    public Book createBook(String name, String year, int numberOfPages, String price) {
+        Book newBook = new Book(name, year, numberOfPages, this, price);
         int oldLength = getBooks().length;
         Book[] tmp = new Book[oldLength + 1];
         System.arraycopy(getBooks(), 0, tmp, 0, oldLength);

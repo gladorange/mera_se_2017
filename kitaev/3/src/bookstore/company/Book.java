@@ -1,6 +1,6 @@
 package bookstore.company;
 
-public class Book {
+public class Book extends ItemForSale {
     private String name, year;
     private int numberOfPages;
     private Author author;
@@ -37,17 +37,15 @@ public class Book {
         return author;
     }
 
-    public Book() {
-        this.name = "";
-        this.year = "";
-        this.numberOfPages = 0;
-        this.author = new Author();
-    }
-
-    public Book(String name, String year, int numberOfPages, Author author) {
-        this.name = name;
-        this.year = year;
+    public Book(String name, String year, int numberOfPages, Author author, String price) {
+        super(name, year, price);
         this.numberOfPages = numberOfPages;
         this.author = author;
+    }
+
+    @Override
+    public String getDescription() {
+        return "Автор книги: " + this.getAuthor().getLastName() + ", написана в " + this.getYear() + " году, " +
+                this.getNumberOfPages() + " страниц";
     }
 }
