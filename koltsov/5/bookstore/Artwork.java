@@ -1,0 +1,34 @@
+package bookstore;
+
+public class Artwork extends ItemForSale{
+    private Painter author;
+    private String  drawingStyle;
+
+    public Artwork(String name, int creationYear, int price, Painter author, String drawingStyle) throws InvalidPriceException {
+        super(name, creationYear, price);
+        this.author = author;
+        this.drawingStyle = drawingStyle;
+    }
+
+    public Painter getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Painter author) {
+        this.author = author;
+    }
+
+    public String getDrawingStyle() {
+        return drawingStyle;
+    }
+
+    public void setDrawingStyle(String drawingStyle) {
+        this.drawingStyle = drawingStyle;
+    }
+
+    @Override
+    protected String getDescription() {
+        return this.getClass().getSimpleName() + " " + name + ": written by " +author.getSecondName() +
+                " in " + creationYear + " year, in " + drawingStyle + " style";
+    }
+}
