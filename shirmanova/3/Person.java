@@ -1,4 +1,7 @@
 public class Person {
+
+    private static int count = 0;
+
     private String firstName;
     private String lastName;
     private int birthYear;
@@ -9,6 +12,12 @@ public class Person {
         this.lastName = lastName;
         this.birthYear = birthYear;
         this.country = country;
+
+        count++;
+    }
+
+    public static int getCount() {
+        return count;
     }
 
     @Override
