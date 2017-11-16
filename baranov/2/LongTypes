@@ -1,0 +1,12 @@
+import static java.lang.Long.valueOf;
+
+public class LongTypes {
+    public static void main (String []args){
+    long i = 8L;
+    long j = -5L;
+        if(i%2 == 0) System.out.println(Long.valueOf(i + j));
+        if (j%2 == 0) System.out.println(Long.valueOf(i - j));
+        if (i >0) System.out.println(Long.valueOf(i * j));
+        if (j >0) System.out.println(Long.valueOf(j / i));
+    }
+}

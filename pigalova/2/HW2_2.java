@@ -2,20 +2,23 @@ public class HW2_2 {
     public static void main(String args[])
     {
         int boundary = 19;
+        int res=0;
 
         for (int i=0; i< boundary; i++)
         {
-            System.out.print(" " + i );
+            if(i % 2 != 0)
+                System.out.print(" " + i );
         }
 
         System.out.print("\n");
 
         for (int i = 0; i< boundary; i++)
         {
-            System.out.print( i+ "+"+ boundary + "=");
-            System.out.print(i+boundary+"  ");
+            if(i % 2 == 0)
+
+                res += i;
         }
 
-        System.out.print("\n");
+        System.out.println(res);
     }
 }
