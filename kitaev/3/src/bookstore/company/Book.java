@@ -20,7 +20,7 @@ public class Book extends ItemForSale {
         return author;
     }
 
-    public Book(String name, String year, int numberOfPages, Author author, String price) {
+    public Book(String name, String year, int numberOfPages, Author author, String price) throws ShopExceptions.InvalidPriceException {
         super(name, year, price);
         this.numberOfPages = numberOfPages;
         this.author = author;

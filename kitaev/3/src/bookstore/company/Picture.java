@@ -20,7 +20,7 @@ public class Picture extends ItemForSale {
         return painter;
     }
 
-    public Picture(String name, String year, Painter painter, String style, String price) {
+    public Picture(String name, String year, Painter painter, String style, String price) throws ShopExceptions.InvalidPriceException {
         super(name, year, price);
         this.style = style;
         this.painter = painter;
@@ -28,7 +28,7 @@ public class Picture extends ItemForSale {
 
     @Override
     public String getDescription() {
-        return "Нарисова " + this.getPainter().getLastName() + " в " + this.getYear() + " году в стиле " +
+        return "Нарисована " + this.getPainter().getLastName() + " в " + this.getYear() + " году в стиле " +
                 this.getStyle();
     }
 }

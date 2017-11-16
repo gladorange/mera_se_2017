@@ -1,33 +1,31 @@
 package bookstore.company;
 
+import java.util.ArrayList;
+
 public class Author extends Person {
-    private Book[] books;
+    private ArrayList<Book> books;
 
     public Author() {
         super();
-        books = new Book[0];
+        books = new ArrayList<>();
     }
 
     public Author(String firstName, String lastName, String yearOfBirth, String country) {
         super(firstName, lastName, yearOfBirth, country);
-        books = new Book[0];
+        books = new ArrayList<>();
     }
 
-    public Book[] getBooks() {
+    public ArrayList<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(Book[] books) {
+    public void setBooks(ArrayList<Book> books) {
         this.books = books;
     }
 
-    public Book createBook(String name, String year, int numberOfPages, String price) {
+    public Book createBook(String name, String year, int numberOfPages, String price) throws ShopExceptions.InvalidPriceException {
         Book newBook = new Book(name, year, numberOfPages, this, price);
-        int oldLength = getBooks().length;
-        Book[] tmp = new Book[oldLength + 1];
-        System.arraycopy(getBooks(), 0, tmp, 0, oldLength);
-        tmp[oldLength] = newBook;
-        setBooks(tmp);
+        books.add(newBook);
         return newBook;
     }
 }
