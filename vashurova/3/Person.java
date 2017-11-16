@@ -4,18 +4,22 @@ public class Person {
     private String secondName;
     private int birthdayDate;
     private String country;
-
+    private static int COUNTOFPERSON;
 
     public Person(String firstName, String secondName, int birthdayDate, String country) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.birthdayDate = birthdayDate;
         this.country = country;
+        COUNTOFPERSON += 1;
     }
 
     public Person() {
     }
 
+    public static int getCOUNTOFPERSON() {
+        return COUNTOFPERSON;
+    }
     public String getFirstName() {
         return firstName;
     }

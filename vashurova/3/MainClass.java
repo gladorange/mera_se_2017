@@ -1,5 +1,3 @@
-import com.sun.org.apache.xml.internal.dtm.ref.sax2dtm.SAX2DTM2;
-
 import java.util.ArrayList;
 
 public class MainClass {
@@ -13,7 +11,6 @@ public class MainClass {
         allAuthors.add(marquez);
         allAuthors.add(melville);
         allAuthors.add(marquis);
-
 
         Book b1 = new Book("One Hundred Years of Solitude", 1967, 710, marquez);
         Book b2 = new Book("No One Writes to the Colonel", 1961, 200, marquez);
@@ -33,5 +30,7 @@ public class MainClass {
             System.out.println(a.getFirstName() + " " + a.getSecondName() + ": " + sumOfPagesPerAuthor);
         }
         System.out.println("In total: " + sumOfPages);
+
+        System.out.print("Num of created Person objects: " + Person.getCOUNTOFPERSON());
     }
 }
