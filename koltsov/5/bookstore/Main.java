@@ -51,7 +51,6 @@ public class Main {
      * @throws ParseException
      */
     private static ArrayList<ItemForSale> createBooks() throws ParseException {
-        Book book;
         ArrayList<ItemForSale> books = new ArrayList<ItemForSale>();
 
         Author alexanderPushkin = new Author("Alexander", "Pushkin", "Russia",
@@ -64,34 +63,27 @@ public class Main {
                 new SimpleDateFormat("dd.MM.yyyy").parse("7.2.1812"),
                 new ArrayList<Book>());
 
+        createBookAndAddToList(books, "The Tale Of Tsar Saltan", 1832, 100, alexanderPushkin, 56);
+        createBookAndAddToList(books, "The Stationmaster", 1831, 150, alexanderPushkin, 32);
 
+        createBookAndAddToList(books, "The Picture of Dorian Gray", 1890, 250, oscarWilde, 320);
+        createBookAndAddToList(books, "De Profundis", 1905, -300, oscarWilde, 224);
+
+        createBookAndAddToList(books, "The Adventures of Oliver Twist", 1837, 185, charlesDickens, 288);
+        createBookAndAddToList(books, "The Personal History, Adventures, Experience and Observation of David " +
+                "Copperfield the Younger of Blunderstone Rookery", 1850, 379, charlesDickens, 928);
+
+        return books;
+    }
+
+    private static void createBookAndAddToList(ArrayList<ItemForSale> dstBooks, String name, int creationYear, int price, Author author, int numberPages) {
         try {
-            books.add(book = new Book("The Tale Of Tsar Saltan", 1832, 100, alexanderPushkin, 56));
-            alexanderPushkin.getBooks().add(book);
-
-            books.add(book = new Book("The Stationmaster", 1831, 150, alexanderPushkin, 32));
-            alexanderPushkin.getBooks().add(book);
-
-
-            books.add(book = new Book("The Picture of Dorian Gray", 1890, 250, oscarWilde, 320));
-            oscarWilde.getBooks().add(book);
-
-            books.add(book = new Book("De Profundis", 1905, 300, oscarWilde, 224));
-            oscarWilde.getBooks().add(book);
-
-
-            books.add(book = new Book("The Adventures of Oliver Twist", 1837, 185, charlesDickens, 288));
-            charlesDickens.getBooks().add(book);
-
-            books.add(book = new Book("The Personal History, Adventures, Experience and Observation of David " +
-                    "Copperfield the Younger of Blunderstone Rookery", 1850, 379, charlesDickens, 928));
-            charlesDickens.getBooks().add(book);
+            Book book = new Book(name, creationYear, price, author, numberPages);
+            author.getBooks().add(book);
+            dstBooks.add(book);
         } catch (InvalidPriceException e) {
             e.printStackTrace();
         }
-
-
-        return books;
     }
 
     /**
@@ -101,24 +93,48 @@ public class Main {
      * @throws ParseException
      */
     private static ArrayList<ItemForSale> createPictures() throws ParseException {
-        Artwork picture;
         ArrayList<ItemForSale> pictures = new ArrayList<ItemForSale>();
 
         Painter victorVasnetsov = new Painter("Victor", "Vasnetsov", "Russia",
                 new SimpleDateFormat("dd.MM.yyyy").parse("15.05.1848"),
                 "realism", new ArrayList<Artwork>());
 
-
-        try {
-            pictures.add(picture = new Artwork("Hero", 1920, 650, victorVasnetsov, "Realism"));
-            victorVasnetsov.getArtWorks().add(picture);
-
-            pictures.add(picture = new Artwork("Alyonushka", 1881, 489, victorVasnetsov, "Romanticism"));
-            victorVasnetsov.getArtWorks().add(picture);
-        } catch (InvalidPriceException e) {
-            e.printStackTrace();
-        }
+        createArtworkAndAddToList(pictures,"Hero", 1920, 650, victorVasnetsov, "Realism");
+        createArtworkAndAddToList(pictures,"Alyonushka", 1881, -489, victorVasnetsov, "Romanticism");
 
         return pictures;
     }
+
+    private static void createArtworkAndAddToList(ArrayList<ItemForSale> dstArtworks, String name, int creationYear, int price, Painter author, String drawingStyle) {
+        try {
+            Artwork artwork = new Artwork(name, creationYear, price, author, drawingStyle);
+            author.getArtWorks().add(artwork);
+            dstArtworks.add(artwork);
+        } catch (InvalidPriceException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
+
+//
+//bookstore.InvalidPriceException: Стоимость объекта должна быть положительной. Переданное значение: -300
+//        at bookstore.ItemForSale.<init>(ItemForSale.java:13)
+//        at bookstore.Book.<init>(Book.java:8)
+//        at bookstore.Main.createBookAndAddToList(Main.java:81)
+//        at bookstore.Main.createBooks(Main.java:70)
+//        at bookstore.Main.main(Main.java:10)
+//        Book The Tale Of Tsar Saltan: written by Pushkin in 1832 year, 56 pages - 100 rubles
+//        Book The Stationmaster: written by Pushkin in 1831 year, 32 pages - 150 rubles
+//        Book The Picture of Dorian Gray: written by Wilde in 1890 year, 320 pages - 250 rubles
+//        Book The Adventures of Oliver Twist: written by Dickens in 1837 year, 288 pages - 185 rubles
+//        Book The Personal History, Adventures, Experience and Observation of David Copperfield the Younger of Blunderstone Rookery: written by Dickens in 1850 year, 928 pages - 379 rubles
+//        Artwork Hero: written by Vasnetsov in 1920 year, in Realism style - 650 rubles
+//        bookstore.InvalidPriceException: Стоимость объекта должна быть положительной. Переданное значение: -489
+//        at bookstore.ItemForSale.<init>(ItemForSale.java:13)
+//        at bookstore.Artwork.<init>(Artwork.java:8)
+//        at bookstore.Main.createArtworkAndAddToList(Main.java:110)
+//        at bookstore.Main.createPictures(Main.java:103)
+//        at bookstore.Main.main(Main.java:10)
+//
+//        Process finished with exit code 0
