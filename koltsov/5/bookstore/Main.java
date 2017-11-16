@@ -46,6 +46,7 @@ public class Main {
 
     /**
      * Create authors -> create books -> add books ro authors
+     *
      * @return ArrayList of Book
      * @throws ParseException
      */
@@ -64,26 +65,30 @@ public class Main {
                 new ArrayList<Book>());
 
 
-        books.add(book = new Book("The Tale Of Tsar Saltan", 1832, 100, alexanderPushkin, 56));
-        alexanderPushkin.getBooks().add(book);
+        try {
+            books.add(book = new Book("The Tale Of Tsar Saltan", 1832, 100, alexanderPushkin, 56));
+            alexanderPushkin.getBooks().add(book);
 
-        books.add(book = new Book("The Stationmaster", 1831, 150, alexanderPushkin, 32));
-        alexanderPushkin.getBooks().add(book);
-
-
-        books.add(book = new Book("The Picture of Dorian Gray", 1890, 250, oscarWilde, 320));
-        oscarWilde.getBooks().add(book);
-
-        books.add(book = new Book("De Profundis", 1905, 300, oscarWilde, 224));
-        oscarWilde.getBooks().add(book);
+            books.add(book = new Book("The Stationmaster", 1831, 150, alexanderPushkin, 32));
+            alexanderPushkin.getBooks().add(book);
 
 
-        books.add(book = new Book("The Adventures of Oliver Twist", 1837, 185, charlesDickens, 288));
-        charlesDickens.getBooks().add(book);
+            books.add(book = new Book("The Picture of Dorian Gray", 1890, 250, oscarWilde, 320));
+            oscarWilde.getBooks().add(book);
 
-        books.add(book = new Book("The Personal History, Adventures, Experience and Observation of David " +
-                "Copperfield the Younger of Blunderstone Rookery", 1850, 379, charlesDickens, 928));
-        charlesDickens.getBooks().add(book);
+            books.add(book = new Book("De Profundis", 1905, 300, oscarWilde, 224));
+            oscarWilde.getBooks().add(book);
+
+
+            books.add(book = new Book("The Adventures of Oliver Twist", 1837, 185, charlesDickens, 288));
+            charlesDickens.getBooks().add(book);
+
+            books.add(book = new Book("The Personal History, Adventures, Experience and Observation of David " +
+                    "Copperfield the Younger of Blunderstone Rookery", 1850, 379, charlesDickens, 928));
+            charlesDickens.getBooks().add(book);
+        } catch (InvalidPriceException e) {
+            e.printStackTrace();
+        }
 
 
         return books;
@@ -91,6 +96,7 @@ public class Main {
 
     /**
      * Create painters -> create pictures -> add pictures to painters
+     *
      * @return ArrayList of pictures
      * @throws ParseException
      */
@@ -103,11 +109,15 @@ public class Main {
                 "realism", new ArrayList<Artwork>());
 
 
-        pictures.add(picture = new Artwork("Hero", 1920, 650, victorVasnetsov, "Realism"));
-        victorVasnetsov.getArtWorks().add(picture);
+        try {
+            pictures.add(picture = new Artwork("Hero", 1920, 650, victorVasnetsov, "Realism"));
+            victorVasnetsov.getArtWorks().add(picture);
 
-        pictures.add(picture = new Artwork("Alyonushka", 1881, 489, victorVasnetsov, "Romanticism"));
-        victorVasnetsov.getArtWorks().add(picture);
+            pictures.add(picture = new Artwork("Alyonushka", 1881, 489, victorVasnetsov, "Romanticism"));
+            victorVasnetsov.getArtWorks().add(picture);
+        } catch (InvalidPriceException e) {
+            e.printStackTrace();
+        }
 
         return pictures;
     }

@@ -5,9 +5,13 @@ abstract public class ItemForSale {
     protected int       creationYear;
     protected int       price;
 
-    public ItemForSale(String name, int creationYear, int price) {
+    public ItemForSale(String name, int creationYear, int price) throws InvalidPriceException {
         this.name = name;
         this.creationYear = creationYear;
+
+        if (price <= 0)
+            throw new InvalidPriceException("Стоимость объекта должна быть положительной. " +
+                                            "Переданное значение: " + price);
         this.price = price;
     }
 

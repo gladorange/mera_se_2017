@@ -4,13 +4,13 @@ public class Book extends ItemForSale {
     private Author  author;
     private int     numberPages;
 
-    public Book(String name, int creationYear, int price, Author author, int numberPages) {
+    public Book(String name, int creationYear, int price, Author author, int numberPages) throws InvalidPriceException {
         super(name, creationYear, price);
         this.author = author;
         this.numberPages = numberPages;
     }
 
-    public Book() {
+    public Book() throws InvalidPriceException {
         this(null, 0, 0, null, 0);
     }
 

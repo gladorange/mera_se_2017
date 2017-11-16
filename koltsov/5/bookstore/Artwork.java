@@ -4,7 +4,7 @@ public class Artwork extends ItemForSale{
     private Painter author;
     private String  drawingStyle;
 
-    public Artwork(String name, int creationYear, int price, Painter author, String drawingStyle) {
+    public Artwork(String name, int creationYear, int price, Painter author, String drawingStyle) throws InvalidPriceException {
         super(name, creationYear, price);
         this.author = author;
         this.drawingStyle = drawingStyle;
