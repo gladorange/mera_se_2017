@@ -38,6 +38,7 @@ public class Painter extends Person {
         try {
             Picture newPicture = new Picture(name, year, this, style, price);
             pictures.add(newPicture);
+            Shop.addItemForSale(newPicture);
             return newPicture;
         } catch (InvalidPriceException e) {
             System.out.println(e.getMessage());

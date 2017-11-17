@@ -3,7 +3,7 @@ package bookstore.company;
 import java.util.ArrayList;
 
 public class Shop {
-    private ArrayList<ItemForSale> itemsForSale;
+    private static ArrayList<ItemForSale> itemsForSale;
 
     public void setItemsForSale(ArrayList<ItemForSale> itemsForSale) {
         this.itemsForSale = itemsForSale;
@@ -21,8 +21,8 @@ public class Shop {
         this.itemsForSale = itemsForSale;
     }
 
-    public void addItemForSale(ItemForSale itemForSale) {
-        this.itemsForSale.add(itemForSale);
+    public static void addItemForSale(ItemForSale itemForSale) {
+        itemsForSale.add(itemForSale);
     }
 
     public void showItems() {
@@ -39,18 +39,13 @@ public class Shop {
         Author author2 = new Author("Name2", "LastName2", "1912", "country2");
         Author author3 = new Author("Name2", "LastName2", "1970", "country2");
 
-        Book book0 = author0.createBook("Book0", "1930", 100, "100");
-        shop.addItemForSale(book0);
-        Book book1 = author0.createBook("Book1", "1931", 5, "200");
-        shop.addItemForSale(book1);
+        author0.createBook("Book0", "1930", 100, "100");
+        author0.createBook("Book1", "1931", 5, "200");
 
-        Book book2 = author1.createBook("Book2", "1932", 102, "-300");
-        shop.addItemForSale(book2);
+        author1.createBook("Book2", "1932", 102, "-300");
 
-        Book book3 = author2.createBook("Book3", "1933", 1030, "400");
-        shop.addItemForSale(book3);
-        Book book4 = author2.createBook("Book4", "1934", 104, "500");
-        shop.addItemForSale(book4);
+        author2.createBook("Book3", "1933", 1030, "400");
+        author2.createBook("Book4", "1934", 104, "500");
 
         ArrayList<Author> authors = new ArrayList<>();
         authors.add(author0);
@@ -79,10 +74,8 @@ public class Shop {
         Painter painter1 = new Painter("PainterName1", "PainterLastName1", "1911",
                 "country4", "style1");
 
-        Picture picture0 = painter0.createPicture("Picture0", "1930", "style2", "-100.00");
-        shop.addItemForSale(picture0);
-        Picture picture1 = painter1.createPicture("Picture1", "1940", "style3", "99.99");
-        shop.addItemForSale(picture1);
+        painter0.createPicture("Picture0", "1930", "style2", "-100.00");
+        painter1.createPicture("Picture1", "1940", "style3", "99.99");
         shop.showItems();
 
         /*

@@ -27,6 +27,7 @@ public class Author extends Person {
         try {
             Book newBook = new Book(name, year, numberOfPages, this, price);
             books.add(newBook);
+            Shop.addItemForSale(newBook);
             return newBook;
         } catch (InvalidPriceException e) {
             System.out.println(e.getMessage());
