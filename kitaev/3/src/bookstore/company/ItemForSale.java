@@ -14,7 +14,7 @@ public abstract class ItemForSale {
         this.year = year;
     }
 
-    public void setPrice(String price) throws ShopExceptions.InvalidPriceException {
+    public void setPrice(String price) throws InvalidPriceException {
         BigDecimal decimalPrice = new BigDecimal(price);
         checkPrice(decimalPrice);
         this.price = decimalPrice;
@@ -32,7 +32,7 @@ public abstract class ItemForSale {
         return price;
     }
 
-    public ItemForSale(String name, String year, String price) throws ShopExceptions.InvalidPriceException {
+    public ItemForSale(String name, String year, String price) throws InvalidPriceException {
         BigDecimal decimalPrice = new BigDecimal(price);
         checkPrice(decimalPrice);
         this.name = name;
@@ -42,9 +42,9 @@ public abstract class ItemForSale {
 
     public abstract String getDescription();
 
-    protected void checkPrice(BigDecimal price) throws ShopExceptions.InvalidPriceException {
+    protected void checkPrice(BigDecimal price) throws InvalidPriceException {
         if (price.compareTo(new BigDecimal(0)) < 0) {
-            throw new ShopExceptions.InvalidPriceException("Цена не может быть отрицательной, переданная цена " + price);
+            throw new InvalidPriceException("Цена не может быть отрицательной, переданная цена " + price);
         }
     }
 }

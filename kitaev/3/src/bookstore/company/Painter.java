@@ -34,9 +34,14 @@ public class Painter extends Person {
         return pictures;
     }
 
-    public Picture createPicture(String name, String year, String style, String price) throws ShopExceptions.InvalidPriceException {
-        Picture newPicture = new Picture(name, year, this, style, price);
-        pictures.add(newPicture);
-        return newPicture;
+    public Picture createPicture(String name, String year, String style, String price) {
+        try {
+            Picture newPicture = new Picture(name, year, this, style, price);
+            pictures.add(newPicture);
+            return newPicture;
+        } catch (InvalidPriceException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 }
