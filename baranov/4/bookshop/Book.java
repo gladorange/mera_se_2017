@@ -3,14 +3,6 @@ package bookshop;
 public class Book extends ItemForSale {
     private Author authors;
     private int numPages;
-/* Не нужен этот конструктор (книга без страниц)
-    public Book() {
-        this.bookName = "BookName";
-        this.yearOfPublish = 0;
-        this.author = new Author();
-        this.numPages = 0;
-    }
-*/
 
     public Book(String itemName, int yearOfItem, int price, Author authors, int numPages) {
         super(itemName, yearOfItem, price);

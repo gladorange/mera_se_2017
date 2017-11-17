@@ -12,6 +12,6 @@ public class Picture extends ItemForSale {
 
     @Override
     public void getDescription() {
-        System.out.println("нарисована: " + painters.getFirstName() + " " + painters.getLastName() + ", в " + getYearOfItem() + ", в стиле " + style);
+        System.out.println("Нарисована: " + painters.getFirstName() + " " + painters.getLastName() + ", в " + getYearOfItem() + ", в стиле " + style);
     }
 }
