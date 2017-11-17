@@ -20,7 +20,7 @@ public class Picture extends ItemForSale {
         return painter;
     }
 
-    public Picture(String name, String year, Painter painter, String style, String price) throws ShopExceptions.InvalidPriceException {
+    public Picture(String name, String year, Painter painter, String style, String price) throws InvalidPriceException {
         super(name, year, price);
         this.style = style;
         this.painter = painter;
