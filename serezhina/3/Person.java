@@ -1,16 +1,14 @@
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Person {
 
     private static int personCount;
     private String firstName;
     private String lastName;
-    private Date birthDay;
+    private LocalDate birthDay;
     private String country;
 
-    Person(String firstName, String lastName, Date birthDay, String country) {
+    Person(String firstName, String lastName, LocalDate birthDay, String country) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDay = birthDay;
@@ -38,11 +36,11 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public String getBirthDay() {
-        return new SimpleDateFormat("yyyy-mm-dd").format(this.birthDay);
+    public LocalDate getBirthDay() {
+        return birthDay;
     }
 
-    public void setBirthDay(Date birthDay) throws ParseException {
+    public void setBirthDay(LocalDate birthDay) {
 
         this.birthDay = birthDay;
     }

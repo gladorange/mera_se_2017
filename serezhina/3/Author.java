@@ -1,17 +1,17 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Author extends Person {
 
     ArrayList<Books> booksList;
 
-    Author(String firstName, String lastName, Date birthDay, String country) {
+    Author(String firstName, String lastName, LocalDate birthDay, String country) {
         super(firstName, lastName, birthDay, country);
-        this.booksList=new ArrayList<Books>();
+        this.booksList = new ArrayList<>();
     }
 
-    public void addBooksToList(Books ...books ){
-        for (Books book: books) {
+    public void addBooksToList(Books... books) {
+        for (Books book : books) {
             booksList.add(book);
         }
     }
