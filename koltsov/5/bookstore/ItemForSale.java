@@ -9,8 +9,8 @@ abstract public class ItemForSale {
         this.name = name;
         this.creationYear = creationYear;
 
-        if (price <= 0)
-            throw new InvalidPriceException("Стоимость объекта должна быть положительной. " +
+        if (price < 0)
+            throw new InvalidPriceException("Стоимость объекта должна быть не отрицательной. " +
                                             "Переданное значение: " + price);
         this.price = price;
     }
@@ -35,7 +35,11 @@ abstract public class ItemForSale {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(int price) throws InvalidPriceException {
+        if (price < 0)
+            throw new InvalidPriceException("Стоимость объекта должна быть не отрицательной. " +
+                    "Переданное значение: " + price);
+
         this.price = price;
     }
 
