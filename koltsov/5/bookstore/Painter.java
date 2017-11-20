@@ -13,13 +13,11 @@ public class Painter extends Person {
     protected String drawingStyle;
     protected ArrayList<Artwork> artWorks;
 
-
     public Painter(String firstName, String secondName, String country, Date birthday, String drawingStyle, ArrayList<Artwork> artWorks) {
         super(firstName, secondName, country, birthday);
         this.drawingStyle = drawingStyle;
         this.artWorks = artWorks;
     }
-
 
     public static ArrayList<Painter> loadFromFile(String fileName) {
         ArrayList<Painter> painters = new ArrayList<>();

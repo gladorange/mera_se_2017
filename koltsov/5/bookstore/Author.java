@@ -12,17 +12,11 @@ import java.util.StringTokenizer;
 public class Author extends Person {
     protected ArrayList<Book> books;
 
-    public Author() {
-        //System.out.println("bookstore.bookstore.Author constructor without arguments");
-        this("null", "null", "null", new Date(0), new ArrayList<Book>());
-    }
-
     public Author(String firstName, String secondName,
                   String country, Date birthday,
                   ArrayList<Book> books) {
         super(firstName, secondName, country, birthday);
         this.books = books;
-        //System.out.println("bookstore.bookstore.Author constructor with arguments");
     }
 
     public static ArrayList<Author> loadFromFile(String fileName) {

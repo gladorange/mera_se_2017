@@ -7,7 +7,7 @@ public class Main {
 
     private static final String PATH_TO_FILE_RESOURCES = System.getProperty("user.dir") + "\\koltsov\\5\\";
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
 
         ArrayList<Author> authors = Author.loadFromFile(PATH_TO_FILE_RESOURCES + "AUTHORS.txt");
         ArrayList<Painter> painters = Painter.loadFromFile(PATH_TO_FILE_RESOURCES + "PAINTERS.txt");

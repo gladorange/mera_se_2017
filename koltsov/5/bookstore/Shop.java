@@ -13,10 +13,6 @@ public class Shop {
         this.itemsForSale = itemsForSale;
     }
 
-    public Shop() {
-        this(new ArrayList<ItemForSale>());
-    }
-
     public Shop(ArrayList<? extends ItemForSale> itemsForSale1, ArrayList<? extends ItemForSale> itemsForSale2) {
         this(new ArrayList<ItemForSale>());
 
