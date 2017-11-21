@@ -19,7 +19,7 @@ public class Shop {
         Shop shop = new Shop();
 
         try {
-            Book warAndPeace = new Book("War and Peace", 1869, 3.99,1440, leoTolstoy);
+            Book warAndPeace = new Book("War and Peace", 1869, 3.99, 1440, leoTolstoy);
             tolstoyBooks.add(warAndPeace);
             shop.items.add(warAndPeace);
         } catch (InvalidPriceException e) {
@@ -27,7 +27,7 @@ public class Shop {
         }
 
         try {
-            Book annaKarenina = new Book("Anna Karenina", 1877, -2.15,864, leoTolstoy);
+            Book annaKarenina = new Book("Anna Karenina", 1877, -2.15, 864, leoTolstoy);
             tolstoyBooks.add(annaKarenina);
             shop.items.add(annaKarenina);
         } catch (InvalidPriceException e) {
