@@ -32,6 +32,11 @@ public abstract class ItemForSale {
         return price;
     }
 
+    public ItemForSale(String name, String year) {
+        this.name = name;
+        this.year = year;
+    }
+
     public ItemForSale(String name, String year, String price) throws InvalidPriceException {
         BigDecimal decimalPrice = new BigDecimal(price);
         checkPrice(decimalPrice);

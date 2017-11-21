@@ -1,6 +1,9 @@
 package bookstore.company;
 
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Shop {
     private static ArrayList<ItemForSale> itemsForSale;
@@ -26,32 +29,64 @@ public class Shop {
     }
 
     public void showItems() {
-        for (ItemForSale item : this.getItemsForSale()) {
-            System.out.println(item.getDescription() + " - " + item.getPrice() + " у.е.");
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter("SHOP.TXT");
+            bw = new BufferedWriter(fw);
+            for (ItemForSale item : this.getItemsForSale()) {
+                bw.write(item.getDescription() + " - " + item.getPrice() + " у.е.\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bw != null)
+                    bw.close();
+                if (fw != null)
+                    fw.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Shop shop = new Shop();
+        Set<Author> authors = new TreeSet<>();
+        FileInputStream a = new FileInputStream("AUTHORS.TXT");
+        BufferedReader bufferAuthors = new BufferedReader(new InputStreamReader(a));
+        String line;
+        while ((line = bufferAuthors.readLine()) != null) {
+            String[] array = line.split("\t");
+            authors.add(new Author(array[0], array[1], array[2], array[3]));
+        }
 
-        Author author0 = new Author("Name0", "LastName0", "1910", "country0");
-        Author author1 = new Author("Name1", "LastName1", "1911", "country1");
-        Author author2 = new Author("Name2", "LastName2", "1912", "country2");
-        Author author3 = new Author("Name2", "LastName2", "1970", "country2");
-
-        author0.createBook("Book0", "1930", 100, "100");
-        author0.createBook("Book1", "1931", 5, "200");
-
-        author1.createBook("Book2", "1932", 102, "-300");
-
-        author2.createBook("Book3", "1933", 1030, "400");
-        author2.createBook("Book4", "1934", 104, "500");
-
-        ArrayList<Author> authors = new ArrayList<>();
-        authors.add(author0);
-        authors.add(author1);
-        authors.add(author2);
-        authors.add(author3);
+        FileInputStream b = new FileInputStream("BOOKS.TXT");
+        BufferedReader bufferBooks = new BufferedReader(new InputStreamReader(b));
+        String booksLine;
+        while ((booksLine = bufferBooks.readLine()) != null) {
+            String[] array = booksLine.split("\t");
+            for (Author author : authors) {
+                if (author.getLastName().equals(array[3])) {
+                    boolean incorrect = true;
+                    Book book = author.createBook(array[0], array[1], Integer.parseInt(array[2]));
+                    while (incorrect) {
+                        try {
+                            System.out.println("Введите цену для " + book.getDescription() + ":");
+                            BufferedReader bufferPrice = new BufferedReader(new InputStreamReader(System.in));
+                            String price = bufferPrice.readLine();
+                            book.setPrice(price);
+                            incorrect = false;
+                        } catch (InvalidPriceException | NumberFormatException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        bufferBooks.close();
 
 
         int totalPages = 0;
@@ -69,28 +104,49 @@ public class Shop {
         System.out.println("The total count of pages in the shop is " + totalPages);
 
 
-        Painter painter0 = new Painter("PainterName0", "PainterLastName0", "1910",
-                "country3", "style0");
-        Painter painter1 = new Painter("PainterName1", "PainterLastName1", "1911",
-                "country4", "style1");
+        Set<Painter> painters = new TreeSet<>();
+        FileInputStream p = new FileInputStream("PAINTERS.TXT");
+        BufferedReader bufferPainters = new BufferedReader(new InputStreamReader(p));
+        String linePainter;
+        while ((linePainter = bufferPainters.readLine()) != null) {
+            String[] array = linePainter.split("\t");
+            painters.add(new Painter(array[0], array[1], array[2], array[3], array[4]));
+        }
 
-        painter0.createPicture("Picture0", "1930", "style2", "-100.00");
-        painter1.createPicture("Picture1", "1940", "style3", "99.99");
+        FileInputStream pictures = new FileInputStream("PICTURES.TXT");
+        BufferedReader bufferPictures = new BufferedReader(new InputStreamReader(pictures));
+        String picturesLine;
+        while ((picturesLine = bufferPictures.readLine()) != null) {
+            String[] array = picturesLine.split("\t");
+            for (Painter painter : painters) {
+                if (painter.getLastName().equals(array[3])) {
+                    boolean incorrect = true;
+                    Picture picture = painter.createPicture(array[0], array[1], array[2]);
+                    while (incorrect) {
+                        try {
+                            System.out.println("Введите цену для " + picture.getDescription() + ":");
+                            BufferedReader bufferPrice = new BufferedReader(new InputStreamReader(System.in));
+                            String price = bufferPrice.readLine();
+                            picture.setPrice(price);
+                            incorrect = false;
+                        } catch (InvalidPriceException | NumberFormatException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        bufferPictures.close();
+
         shop.showItems();
 
         /*
-        Цена не может быть отрицательной, переданная цена -300
-        LastName0 Name0 wrote 105 pages
-        LastName1 Name1 wrote 0 pages
-        LastName2 Name2 wrote 1134 pages
-        LastName2 Name2 wrote 0 pages
-        The total count of pages in the shop is 1239
-        Цена не может быть отрицательной, переданная цена -100.00
-        Автор книги: LastName0, написана в 1930 году, 100 страниц - 100 у.е.
-        Автор книги: LastName0, написана в 1931 году, 5 страниц - 200 у.е.
-        Автор книги: LastName2, написана в 1933 году, 1030 страниц - 400 у.е.
-        Автор книги: LastName2, написана в 1934 году, 104 страниц - 500 у.е.
-        Нарисована PainterLastName1 в 1940 году в стиле style3 - 99.99 у.е.
+        LastName3 Name3 wrote 102 pages
+        LastName2 Name2 wrote 5 pages
+        Лермонтов Михаил wrote 142 pages
+        Пушкин Александр wrote 1130 pages
+        The total count of pages in the shop is 1379
         */
     }
 }
