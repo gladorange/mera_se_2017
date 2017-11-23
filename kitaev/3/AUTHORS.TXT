@@ -1,0 +1,4 @@
+Пушкин	Александр	Россия	1799
+Лермонтов	Михаил	Россия	1814
+LastName2	Name2	country	1912
+LastName3	Name3	country2	1970
