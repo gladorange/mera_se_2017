@@ -5,14 +5,14 @@ public class BookStore {
         Author turgenev = new Author("Ivan", "Turgenev", 1818, "Russia");
         Author[] authors = {pushkin, bulgakov, turgenev};
 
-        Book captainDaughter = new Book("СaptainDaughter", 1836, 95, pushkin);
-        Book picovayaDama = new Book("PicovayaDama", 1834, 102, pushkin);
+        Book captainDaughter = new Book("СaptainDaughter", 1836, 150, 95, pushkin);
+        Book picovayaDama = new Book("PicovayaDama", 1834, 200, 102, pushkin);
         Book[] pushkinBook = {captainDaughter, picovayaDama};
 
-        Book masterMargarita = new Book("MasterAndMargarita", 1940, 356, bulgakov);
+        Book masterMargarita = new Book("MasterAndMargarita", 1940, 420, 356, bulgakov);
         Book[] bulgakovBook = {masterMargarita};
 
-        Book mymy = new Book("MyMy", 1854, 140, turgenev);
+        Book mymy = new Book("MyMy", 1854, 130, 140, turgenev);
         Book[] tyrgenevBook = {mymy};
 
         pushkin.setBooks(pushkinBook);
