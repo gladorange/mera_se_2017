@@ -1,6 +1,7 @@
 package bookstore.company;
 
 import java.io.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
@@ -76,8 +77,12 @@ public class Shop {
                             System.out.println("Введите цену для " + book.getDescription() + ":");
                             BufferedReader bufferPrice = new BufferedReader(new InputStreamReader(System.in));
                             String price = bufferPrice.readLine();
-                            book.setPrice(price);
-                            incorrect = false;
+                            if ((new BigDecimal(price)).compareTo(new BigDecimal(0)) < 0) {
+                                System.out.println("Цена не может быть отрицательной, переданная цена " + price);
+                            } else {
+                                book.setPrice(price);
+                                incorrect = false;
+                            }
                         } catch (InvalidPriceException | NumberFormatException e) {
                             System.out.println(e.getMessage());
                         }
