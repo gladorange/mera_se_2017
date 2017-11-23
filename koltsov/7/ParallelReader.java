@@ -1,66 +1,42 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 public class ParallelReader {
-    private String fileNameOfFilesForReading;
+    private Collection<String> listFiles;
     private Collection<String> data;
-    private Collection<ReadThread> threadsForReading;
+    private Collection<Thread> threadsForReading;
 
     public void process() {
-        long beforeCalculate = System.nanoTime();
-
-        List<String> files = getFileList(Main.PATH_TO_FILE_RESOURCES + fileNameOfFilesForReading);
-        for (String fileName : files) {
-            Thread t = new Thread(new ReadThread());
+        for (String fileName : listFiles) {
+            Thread t = new Thread(new ReadThread(fileName, data));
+            threadsForReading.add(t);
             t.start();
         }
 
-        long afterCalculate = System.nanoTime();
-
-        for (String str : data) {
-            System.out.println(str);
-        }
-
-        System.out.println("Последовательное чтение в миллисекндах: " +
-                (afterCalculate - beforeCalculate) / 1000.0 / 1000.0);
-    }
-
-    private static List<String> getFileList(String fileName) {
-        List<String> files = new ArrayList<>();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String file = br.readLine();
-
-            while (file != null) {
-                files.add(file);
-                file = br.readLine();
+        for (Thread t : threadsForReading) {
+            try {
+                t.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-
-        return files;
     }
 
-    public ParallelReader(String fileNameOfFilesForReading) {
-        this.fileNameOfFilesForReading = fileNameOfFilesForReading;
+    public ParallelReader(Collection<String> listFiles) {
+        this.listFiles = listFiles;
 
-        this.data = new HashSet<>();
+        this.data = new ConcurrentSkipListSet<>();
         this.threadsForReading = new ArrayList<>();
     }
 
-    public String getFileNameOfFilesForReading() {
-        return fileNameOfFilesForReading;
+    public Collection<String> getListFiles() {
+        return listFiles;
     }
 
-    public void setFileNameOfFilesForReading(String fileNameOfFilesForReading) {
-        this.fileNameOfFilesForReading = fileNameOfFilesForReading;
+    public void setListFiles(Collection<String> listFiles) {
+        this.listFiles = listFiles;
     }
 
     public Collection<String> getData() {
@@ -71,11 +47,11 @@ public class ParallelReader {
         this.data = data;
     }
 
-    public Collection<ReadThread> getThreadsForReading() {
+    public Collection<Thread> getThreadsForReading() {
         return threadsForReading;
     }
 
-    public void setThreadsForReading(Collection<ReadThread> threadsForReading) {
+    public void setThreadsForReading(Collection<Thread> threadsForReading) {
         this.threadsForReading = threadsForReading;
     }
 }
