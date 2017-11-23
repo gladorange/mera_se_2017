@@ -1,6 +1,6 @@
 package bookstore;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Person {
     private static int countPersons;
@@ -8,13 +8,9 @@ public class Person {
     protected String    firstName;
     protected String    secondName;
     protected String    country;
-    protected Date      birthday;
+    protected LocalDate birthday;
 
-    public Person() {
-        this("null", "null", "null", new Date(0));
-    }
-
-    public Person(String firstName, String secondName, String country, Date birthday) {
+    public Person(String firstName, String secondName, String country, LocalDate birthday) {
         countPersons++;
         this.firstName = firstName;
         this.secondName = secondName;
@@ -46,11 +42,11 @@ public class Person {
         this.country = country;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
