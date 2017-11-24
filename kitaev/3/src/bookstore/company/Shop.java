@@ -7,53 +7,23 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Shop {
-    private static ArrayList<ItemForSale> itemsForSale;
-
-    public void setItemsForSale(ArrayList<ItemForSale> itemsForSale) {
-        this.itemsForSale = itemsForSale;
-    }
-
-    public ArrayList<ItemForSale> getItemsForSale() {
-        return itemsForSale;
-    }
-
-    public Shop() {
-        this.itemsForSale = new ArrayList<>();
-    }
-
-    public Shop(ArrayList<ItemForSale> itemsForSale) {
-        this.itemsForSale = itemsForSale;
-    }
-
-    public static void addItemForSale(ItemForSale itemForSale) {
-        itemsForSale.add(itemForSale);
-    }
-
-    public void showItems() {
-        BufferedWriter bw = null;
-        FileWriter fw = null;
-        try {
-            fw = new FileWriter("SHOP.TXT");
-            bw = new BufferedWriter(fw);
-            for (ItemForSale item : this.getItemsForSale()) {
-                bw.write(item.getDescription() + " - " + item.getPrice() + " у.е.\n");
+    public static void showItems(ArrayList<ItemForSale> itemsForSale) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("SHOP.txt"))) {
+            try {
+                for (ItemForSale item : itemsForSale) {
+                    bw.write(item.getDescription() + " - " + item.getPrice() + " у.е.\n");
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            } finally {
+                bw.close();
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (bw != null)
-                    bw.close();
-                if (fw != null)
-                    fw.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
         }
     }
 
     public static void main(String[] args) throws IOException {
-        Shop shop = new Shop();
         Set<Author> authors = new TreeSet<>();
         FileInputStream a = new FileInputStream("AUTHORS.TXT");
         BufferedReader bufferAuthors = new BufferedReader(new InputStreamReader(a));
@@ -63,6 +33,7 @@ public class Shop {
             authors.add(new Author(array[0], array[1], array[2], array[3]));
         }
 
+        ArrayList<ItemForSale> itemsForSale = new ArrayList<>();
         FileInputStream b = new FileInputStream("BOOKS.TXT");
         BufferedReader bufferBooks = new BufferedReader(new InputStreamReader(b));
         String booksLine;
@@ -72,6 +43,7 @@ public class Shop {
                 if (author.getLastName().equals(array[3])) {
                     boolean incorrect = true;
                     Book book = author.createBook(array[0], array[1], Integer.parseInt(array[2]));
+                    itemsForSale.add(book);
                     while (incorrect) {
                         try {
                             System.out.println("Введите цену для " + book.getDescription() + ":");
@@ -127,6 +99,7 @@ public class Shop {
                 if (painter.getLastName().equals(array[3])) {
                     boolean incorrect = true;
                     Picture picture = painter.createPicture(array[0], array[1], array[2]);
+                    itemsForSale.add(picture);
                     while (incorrect) {
                         try {
                             System.out.println("Введите цену для " + picture.getDescription() + ":");
@@ -144,7 +117,7 @@ public class Shop {
         }
         bufferPictures.close();
 
-        shop.showItems();
+        showItems(itemsForSale);
 
         /*
         LastName3 Name3 wrote 102 pages
