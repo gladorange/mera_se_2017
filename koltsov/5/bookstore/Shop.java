@@ -29,7 +29,7 @@ public class Shop {
     private void addNewItemForSale(ItemForSale item, BufferedReader br) throws IOException {
         System.out.println("Введите цену для " + item.getDescription() + ":");
 
-        while (true) {
+        do {
             String lineFromUser = br.readLine();
 
             try {
@@ -46,7 +46,7 @@ public class Shop {
             } catch (InvalidPriceException e) {
                 System.out.println("Вы ввели не положитльное целое число! Повторите попытку:");
             }
-        }
+        } while (true);
 
     }
 

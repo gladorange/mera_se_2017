@@ -2,7 +2,7 @@ package bookstore.company;
 
 import java.util.ArrayList;
 
-public class Painter extends Person {
+public class Painter extends Person implements Comparable<Painter> {
     private String style;
     private ArrayList<Picture> pictures;
 
@@ -34,9 +34,30 @@ public class Painter extends Person {
         return pictures;
     }
 
-    public Picture createPicture(String name, String year, String style, String price) throws ShopExceptions.InvalidPriceException {
-        Picture newPicture = new Picture(name, year, this, style, price);
+    public Picture createPicture(String name, String year, String style) {
+        Picture newPicture = new Picture(name, year, style, this);
         pictures.add(newPicture);
+        Shop.addItemForSale(newPicture);
         return newPicture;
+    }
+
+    public Picture createPicture(String name, String year, String style, String price) {
+        try {
+            Picture newPicture = new Picture(name, year, style, this, price);
+            pictures.add(newPicture);
+            Shop.addItemForSale(newPicture);
+            return newPicture;
+        } catch (InvalidPriceException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public int compareTo(Painter o) {
+        if (o.getLastName().equals(this.getLastName())) {
+            return 0;
+        }
+        return -1;
     }
 }
