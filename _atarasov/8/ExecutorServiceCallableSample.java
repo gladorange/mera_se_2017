@@ -20,7 +20,7 @@ public class ExecutorServiceCallableSample {
 
         for (Future<Integer> future : futures) {
             try {
-                System.out.println("Sq " + future.get());
+                System.out.println(future.get());
             } catch (InterruptedException | ExecutionException e) {
                 System.out.println("Что-то не так" + e);
             }
@@ -37,11 +37,6 @@ public class ExecutorServiceCallableSample {
 
         @Override
         public Integer call() {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             System.out.println(i);
             return i * i;
         }
