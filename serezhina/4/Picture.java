@@ -12,6 +12,6 @@ public class Picture extends ItemForSale{
     @Override
     public String getDescription() {
         return  String.format("picture author - %s %s, picture publish year - %d, picture style - %s",
-                this.author.getFirstName(), this.author.getLastName(), this.publishYear, this.style);
+                author.getFirstName(), author.getLastName(), publishYear, style);
     }
 }

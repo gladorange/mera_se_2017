@@ -12,6 +12,6 @@ public class Book  extends ItemForSale{
     @Override
     public String getDescription(){
         return String.format("book author - %s %s, book publish year - %d, number of pages - %d",
-                this.author.getFirstName(), this.author.getLastName(), this.publishYear, this.pagesNumber);
+                author.getFirstName(), author.getLastName(), publishYear, pagesNumber);
     }
 }
