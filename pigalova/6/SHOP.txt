@@ -1,0 +1,4 @@
+--------------------Description-------------------
+Автор Brown написал AngelsDemons в 2000  Price: 456    
+Автор London написал WhiteFang в 1906  Price: 678    
+Автор Bradbury написал Fahrenheit в 1953  Price: 876    
