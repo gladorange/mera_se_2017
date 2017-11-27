@@ -59,6 +59,22 @@ public class Shop
         }
     }
     
+    public void exportItems(String fileName)
+    {
+        try (BufferedWriter outputStream = new BufferedWriter(new FileWriter(fileName) ) )
+        {
+            for (ItemForSale item : saleItems_)
+            {
+                outputStream.write(item.getDescription() + " for " + item.getPrice() + "\n" );
+            }
+        }
+        
+        catch (IOException e)
+        {
+            System.out.printf("Got IOException while writing to %s\n", fileName, e);
+        }
+    }
+    
     //Getters & setters
     public ArrayList<ItemForSale> getSaleItems()
     {
@@ -69,7 +85,8 @@ public class Shop
     {
         ArrayList<T> result = new ArrayList<>();
 
-        try (BufferedReader inputStream = new BufferedReader(new FileReader(fileName) ) ) {
+        try (BufferedReader inputStream = new BufferedReader(new FileReader(fileName) ) )
+        {
             String currentLine;
             
             while ((currentLine = inputStream.readLine() ) != null )
@@ -127,9 +144,11 @@ public class Shop
     {
         Shop shop = new Shop();
         shop.showItems();
+        shop.exportItems("Shop.txt");
     }
     
     private ArrayList<Author> authors_;
     private ArrayList<Painter> painters_;
     private ArrayList<ItemForSale> saleItems_;
 }
+
