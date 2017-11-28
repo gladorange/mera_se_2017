@@ -10,10 +10,15 @@ public class Shop {
         Painter savrasov = new Painter("Алексей", "Cаврасов", 1830, "Russia", "реализм");
         Painter malevich = new Painter("Казимир", "Малевич", 1878, "Ukraine", "суперматизм");
 
-        ItemForSale neznaika = new Book("Незнайка", 1932, 300, 89, nosov);
-        ItemForSale tihiyDon = new Book("Тихий Дон", 1959, 470, 240, sholohov);
-        ItemForSale grachiPriletely = new Picture("Грачи прилетели", 1871, 200000, savrasov);
-        ItemForSale cherniyKvadrat = new Picture("Черный квадрат", 1915, 500000, malevich);
+        Book neznaika = new Book("Незнайка", 1932, 300, 89, nosov);
+        nosov.addBook(neznaika);
+        Book tihiyDon = new Book("Тихий Дон", 1959, 470, 240, sholohov);
+        sholohov.addBook(tihiyDon);
+
+        Picture grachiPriletely = new Picture("Грачи прилетели", 1871, 200000, savrasov);
+        savrasov.addPicture(grachiPriletely);
+        Picture cherniyKvadrat = new Picture("Черный квадрат", 1915, 500000, malevich);
+        malevich.addPicture(cherniyKvadrat);
 
         items.add(neznaika);
         items.add(tihiyDon);
