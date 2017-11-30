@@ -1,24 +1,25 @@
 package threads.company;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.concurrent.Callable;
 
-public class MyThread implements Runnable {
-    private String fileToRead;
+public class MyThread implements Callable<BufferedReader> {
+    private final String fileToRead;
 
     public MyThread(String fileToRead) {
         this.fileToRead = fileToRead;
     }
 
     @Override
-    public void run() {
-        ArrayList<String> multiThreadLines = new ArrayList<>();
+    public BufferedReader call() throws Exception {
+        BufferedReader buffer = null;
         try {
-            multiThreadLines = Threads.readFile(getFileToRead());
+            buffer = Threads.readFile(getFileToRead());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Threads.addToCollection(multiThreadLines);
+        return buffer;
     }
 
     public String getFileToRead() {
