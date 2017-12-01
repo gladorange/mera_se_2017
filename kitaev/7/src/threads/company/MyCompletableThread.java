@@ -2,17 +2,17 @@ package threads.company;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.concurrent.Callable;
+import java.util.function.Supplier;
 
-public class MyThread implements Callable<BufferedReader> {
+public class MyCompletableThread implements Supplier<BufferedReader> {
     private final String fileToRead;
 
-    public MyThread(String fileToRead) {
+    public MyCompletableThread(String fileToRead) {
         this.fileToRead = fileToRead;
     }
 
     @Override
-    public BufferedReader call() throws Exception {
+    public BufferedReader get() {
         BufferedReader buffer = null;
         try {
             buffer = Threads.readFile(getFileToRead());

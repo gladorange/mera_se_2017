@@ -37,7 +37,6 @@ public class Painter extends Person implements Comparable<Painter> {
     public Picture createPicture(String name, String year, String style) {
         Picture newPicture = new Picture(name, year, style, this);
         pictures.add(newPicture);
-        Shop.addItemForSale(newPicture);
         return newPicture;
     }
 
@@ -45,7 +44,6 @@ public class Painter extends Person implements Comparable<Painter> {
         try {
             Picture newPicture = new Picture(name, year, style, this, price);
             pictures.add(newPicture);
-            Shop.addItemForSale(newPicture);
             return newPicture;
         } catch (InvalidPriceException e) {
             System.out.println(e.getMessage());
