@@ -8,10 +8,14 @@ import java.util.List;
 import java.util.concurrent.*;
 
 public class Threads {
-    public static void addToCollection(Collection<String> collection, BufferedReader bufferedReader) throws IOException {
+    public static void addToCollection(Collection<String> collection, BufferedReader bufferedReader) {
         String line;
-        while ((line = bufferedReader.readLine()) != null)
-            collection.add(line);
+        try {
+            while ((line = bufferedReader.readLine()) != null)
+                collection.add(line);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void createFiles() throws IOException {
@@ -60,19 +64,20 @@ public class Threads {
         addToCollection(collectionOfFiles, readFile("files.txt"));
         // read in 1 thread
         HashSet<String> singleThreadLines = new HashSet<>();
-        long timeBeforeOneThreadReading = System.nanoTime();
+        ConcurrentSkipListSet<String> stringCollection = new ConcurrentSkipListSet<>();
+        ConcurrentSkipListSet<String> stringCompletableCollection = new ConcurrentSkipListSet<>();
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        long timeStart = System.nanoTime();
         for (String file : collectionOfFiles) {
             BufferedReader buffer = readFile(file);
             addToCollection(singleThreadLines, buffer);
         }
-        System.out.println("Время последовательного чтения " + (System.nanoTime() - timeBeforeOneThreadReading));
-        // Время последовательного чтения 4718513303
+        System.out.println("Время последовательного чтения               " + (System.nanoTime() - timeStart));
+        // Время последовательного чтения               6251605634
         printStringCollection(singleThreadLines);
 
         // read in multi threads
-        ConcurrentSkipListSet<String> stringCollection = new ConcurrentSkipListSet<>();
-        ExecutorService executorService = Executors.newFixedThreadPool(10);
-        long timeBeforeMultiThreadReading = System.nanoTime();
+        timeStart = System.nanoTime();
         List<Future<BufferedReader>> futures = new ArrayList<>();
         for (String file : collectionOfFiles) {
             Future<BufferedReader> future = executorService.submit(new MyThread(file));
@@ -80,9 +85,16 @@ public class Threads {
         }
         for (Future<BufferedReader> future : futures)
             addToCollection(stringCollection, future.get());
+        System.out.println("Время параллельного чтения ExecutorService   " + (System.nanoTime() - timeStart));
+        // Время параллельного чтения ExecutorService   4302681326
+        timeStart = System.nanoTime();
+        for (String file : collectionOfFiles) {
+            CompletableFuture.supplyAsync(new MyCompletableThread(file), executorService)
+                    .thenAcceptAsync(string -> addToCollection(stringCompletableCollection, string)).join();
+        }
+        System.out.println("Время параллельного чтения CompletableFuture " + (System.nanoTime() - timeStart));
+        // Время параллельного чтения CompletableFuture 11067359051
         executorService.shutdownNow();
-        System.out.println("Время параллельного чтения " + (System.nanoTime() - timeBeforeMultiThreadReading));
-        // Время параллельного чтения 3731314432
         printStringCollection(stringCollection);
     }
 }
