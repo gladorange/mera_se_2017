@@ -26,6 +26,10 @@ public class Painter extends Person {
         this.pictures = pictures;
     }
 
+    public void addPicture (Picture picture) {
+        pictures.add(picture);
+    }
+
     @Override
     public String toString() {
         return "Painter{" +
