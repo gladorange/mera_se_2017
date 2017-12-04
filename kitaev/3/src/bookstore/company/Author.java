@@ -26,14 +26,12 @@ public class Author extends Person implements Comparable<Author> {
     public Book createBook(String name, String year, int numberOfPages) {
         Book newBook = new Book(name, year, numberOfPages, this);
         books.add(newBook);
-        Shop.addItemForSale(newBook);
         return newBook;
     }
 
     public Book createBook(String name, String year, int numberOfPages, String price) throws InvalidPriceException {
         Book newBook = new Book(name, year, numberOfPages, this, price);
         books.add(newBook);
-        Shop.addItemForSale(newBook);
         return newBook;
     }
 

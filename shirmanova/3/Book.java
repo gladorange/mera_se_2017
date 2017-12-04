@@ -1,9 +1,12 @@
-public class Book extends ItemForSale {
+public class Book {
+    String bookName;
+    int bookYear;
     int amountOfPages;
     Author author;
 
-    public Book(String name, int year, int price, int amountOfPages, Author author) {
-        super(name, year, price);
+    public Book(String bookName, int bookYear, int amountOfPages, Author author) {
+        this.bookName = bookName;
+        this.bookYear = bookYear;
         this.amountOfPages = amountOfPages;
         this.author = author;
     }
@@ -11,12 +14,26 @@ public class Book extends ItemForSale {
     @Override
     public String toString() {
         return "Book{" +
-                "amountOfPages=" + amountOfPages +
-                ", author=" + author +
-                ", name='" + name + '\'' +
-                ", year=" + year +
-                ", price=" + price +
+                "bookName='" + bookName + '\'' +
+                ", bookYear=" + bookYear +
+                ", amountOfPages=" + amountOfPages +
                 '}';
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public int getBookYear() {
+        return bookYear;
+    }
+
+    public void setBookYear(int bookYear) {
+        this.bookYear = bookYear;
     }
 
     public int getAmountOfPages() {
@@ -33,10 +50,5 @@ public class Book extends ItemForSale {
 
     public void setAuthor(Author author) {
         this.author = author;
-    }
-
-    @Override
-    public String getDescription() {
-        return "Автор книги: " + author.getLastName() + ", написана в " + year + ", " + amountOfPages + " страниц";
     }
 }

@@ -19,7 +19,7 @@ public class Main {
         ExecutorService executorService = Executors.newFixedThreadPool(10);
         for (String fileName : listFiles) {
             CompletableFuture<Collection<String>> cFuture = CompletableFuture
-                    .supplyAsync(new getterStringCollectionFromFile(fileName), executorService);
+                    .supplyAsync(new GetterStringCollectionFromFile(fileName), executorService);
 
             cFuture.thenAccept(newCollection -> sharedCollection.addAll(newCollection));
         }
