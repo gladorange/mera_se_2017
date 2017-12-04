@@ -1,6 +1,13 @@
 package artshop;
 
+import static java.util.stream.Collectors.*;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /*
 * Добавить класс Картина.
@@ -10,6 +17,85 @@ import java.util.ArrayList;
 */
 public class Picture extends ItemForSale
 {
+
+
+    public static class Pers {
+        String name;
+        int age;
+
+        public Pers(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        List<Pers> pList = new ArrayList<>();
+        pList.add(new Pers("A", 42));
+        pList.add(new Pers("B", 42));
+        pList.add(new Pers("C", 44));
+        pList.add(new Pers("D", 44));
+        pList.add(new Pers("old", 100500));
+        pList.add(new Pers("min", -42));
+
+        Map<Integer, List<Pers>> collect = pList.stream()
+                .collect(groupingBy(pers -> pers.age));
+
+        Pers max = Collections.max(pList, Comparator.comparing(Pers::getAge));
+        Pers min = Collections.min(pList, Comparator.comparing(Pers::getAge));
+
+        System.out.println(collect);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public Picture(String title, String year, String style, Painter painter)
     {
         super(title, year);
