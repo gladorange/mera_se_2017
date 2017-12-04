@@ -2,9 +2,10 @@ package threads.company;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.function.Supplier;
 
-public class MyCompletableThread implements Supplier<BufferedReader> {
+public class MyCompletableThread implements Supplier<ArrayList<String>> {
     private final String fileToRead;
 
     public MyCompletableThread(String fileToRead) {
@@ -12,14 +13,15 @@ public class MyCompletableThread implements Supplier<BufferedReader> {
     }
 
     @Override
-    public BufferedReader get() {
-        BufferedReader buffer = null;
+    public ArrayList<String> get() {
+        ArrayList<String> stringArrayList = new ArrayList<>();
         try {
-            buffer = Threads.readFile(getFileToRead());
+            BufferedReader buffer = Threads.readFile(getFileToRead());
+            Threads.addToCollection(stringArrayList, buffer);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return buffer;
+        return stringArrayList;
     }
 
     public String getFileToRead() {
