@@ -5,11 +5,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.function.Supplier;
 
-public class getterStringCollectionFromFile implements Supplier<Collection<String>> {
+public class GetterStringCollectionFromFile implements Supplier<Collection<String>> {
 
     private final String fileName;
 
-    public getterStringCollectionFromFile(String fileName) {
+    public GetterStringCollectionFromFile(String fileName) {
         this.fileName = fileName;
     }
 
