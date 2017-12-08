@@ -73,27 +73,28 @@ public class Threads {
             addToCollection(singleThreadLines, buffer);
         }
         System.out.println("Время последовательного чтения               " + (System.nanoTime() - timeStart));
-        // Время последовательного чтения               6251605634
+        // Время последовательного чтения               8640243200
         printStringCollection(singleThreadLines);
 
         // read in multi threads
         timeStart = System.nanoTime();
-        List<Future<BufferedReader>> futures = new ArrayList<>();
+        List<Callable<String>> callables = new ArrayList<>();
         for (String file : collectionOfFiles) {
-            Future<BufferedReader> future = executorService.submit(new MyThread(file));
-            futures.add(future);
+            Callable<String> future = new MyThread(file, stringCollection);
+            executorService.submit(future);
+            callables.add(future);
         }
-        for (Future<BufferedReader> future : futures)
-            addToCollection(stringCollection, future.get());
+        executorService.invokeAll(callables);
         System.out.println("Время параллельного чтения ExecutorService   " + (System.nanoTime() - timeStart));
-        // Время параллельного чтения ExecutorService   4302681326
+        // Время параллельного чтения ExecutorService   6080225424
         timeStart = System.nanoTime();
         for (String file : collectionOfFiles) {
             CompletableFuture.supplyAsync(new MyCompletableThread(file), executorService)
-                    .thenAcceptAsync(string -> addToCollection(stringCompletableCollection, string)).join();
+                    .thenAcceptAsync(collectionFromTheFile ->
+                            stringCompletableCollection.addAll(collectionFromTheFile));
         }
         System.out.println("Время параллельного чтения CompletableFuture " + (System.nanoTime() - timeStart));
-        // Время параллельного чтения CompletableFuture 11067359051
+        // Время параллельного чтения CompletableFuture 108457081
         executorService.shutdownNow();
         printStringCollection(stringCollection);
     }
