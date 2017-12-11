@@ -1,0 +1,8 @@
+first line in fifth file
+second line in fifth file
+third line in fifth file
+fourth line in fifth file
+one more same string
+fifth line in fifth file
+sixth line in fifth file
+seventh line in fifth file
