@@ -1,0 +1,8 @@
+first line in sixth file
+second line in sixth file
+third line in sixth file
+fourth line in sixth file
+one more same string
+fifth line in sixth file
+sixth line in sixth file
+seventh line in sixth file

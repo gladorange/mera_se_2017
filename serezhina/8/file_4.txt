@@ -1,0 +1,8 @@
+first line in fourth file
+second line in fourth file
+third line in fourth file
+fourth line in fourth file
+fifth line in fourth file
+sixth line in fourth file
+same string
+seventh line in fourth file
