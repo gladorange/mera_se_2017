@@ -20,7 +20,7 @@ public class Picture extends ItemForSale {
 
     @Override
     public String getDescription() {
-        return String.format("picture author - %s %s, picture publish year - %d, picture style - %s",
-                author.getFirstName(), author.getLastName(), getPublishYear(), style);
+        return String.format("title - %s, picture author - %s %s, picture publish year - %d, picture style - %s",
+                getTitle(), author.getFirstName(), author.getLastName(), getPublishYear(), style);
     }
 }

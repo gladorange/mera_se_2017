@@ -22,7 +22,9 @@ public class Book extends ItemForSale {
 
     @Override
     public String getDescription() {
-        return String.format("title - %s, book author - %s %s, book publish year - %d, number of pages - %d",
-                getTitle(), author.getFirstName(), author.getLastName(), getPublishYear(), pagesNumber);
+    return String.format(
+        "title - %s, book author - %s %s, book publish year - %d, number of pages - %d",
+        getTitle(), author.getFirstName(), author.getLastName(), getPublishYear(), pagesNumber);
     }
+
 }

@@ -1,12 +1,13 @@
 package book.store;
 
+import book.store.BookStoreException.InvalidPrice;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Store {
@@ -45,42 +46,43 @@ public class Store {
     }
   }
 
-  public void addItemForSale(List<String> item, List<String> creatorInfo)
-      throws BookStoreException {
-
-    ItemForSale itemForSale;
-    long price;
+  public void addBookToStore(List<String> bookInfo, List<String> authorInfo) {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-    Pattern pagesPattern = Pattern.compile("\\d+");
-    Pattern stylePattern = Pattern.compile("\\w+");
+    Author author =
+        new Author(
+            authorInfo.get(1),
+            authorInfo.get(0),
+            LocalDate.parse(authorInfo.get(3), formatter),
+            authorInfo.get(2));
+    Book book =
+        new Book(
+            bookInfo.get(0),
+            author,
+            Integer.parseInt(bookInfo.get(1)),
+            Integer.parseInt(bookInfo.get(2)));
+    waitingInputPriceAndAddItem(book);
+  }
 
-    if (pagesPattern.matcher(item.get(2)).find()) {
+  public void addPictureToStore(List<String> pictureInfo, List<String> artistInfo) {
 
-      Author author =
-          new Author(
-              creatorInfo.get(1),
-              creatorInfo.get(0),
-              LocalDate.parse(creatorInfo.get(3), formatter),
-              creatorInfo.get(2));
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    Artist artist =
+        new Artist(
+            artistInfo.get(1),
+            artistInfo.get(0),
+            LocalDate.parse(artistInfo.get(3), formatter),
+            artistInfo.get(2));
 
-      itemForSale =
-          new Book(
-              item.get(0), author, Integer.parseInt(item.get(1)), Integer.parseInt(item.get(2)));
+    Picture picture =
+        new Picture(
+            pictureInfo.get(0), artist, Integer.parseInt(pictureInfo.get(1)), pictureInfo.get(2));
+    waitingInputPriceAndAddItem(picture);
+  }
 
-    } else if (stylePattern.matcher(item.get(2)).find()) {
+  private void waitingInputPriceAndAddItem(ItemForSale itemForSale) {
 
-      Artist artist =
-          new Artist(
-              creatorInfo.get(1),
-              creatorInfo.get(0),
-              LocalDate.parse(creatorInfo.get(3), formatter),
-              creatorInfo.get(2));
-      itemForSale = new Picture(item.get(0), artist, Integer.parseInt(item.get(1)), item.get(2));
-    } else {
-      throw new BookStoreException(String.format("Item '%s' is not correct", item));
-    }
-
+    long price;
     try {
       InputStreamReader isr = new InputStreamReader(System.in);
       BufferedReader br = new BufferedReader(isr);
@@ -106,8 +108,9 @@ public class Store {
         return;
       }
 
-    } catch (IOException e) {
+    } catch (IOException | InvalidPrice e) {
       e.printStackTrace();
     }
   }
+
 }
