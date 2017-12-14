@@ -1,0 +1,8 @@
+first line in third file
+second line in third file
+third line in third file
+fourth line in third file
+fifth line in third file
+sixth line in third file
+seventh line in third file
+one more same string

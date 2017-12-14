@@ -1,0 +1,9 @@
+same string
+first line in eighth file
+second line in eighth file
+third line in fifth file
+fourth line in eighth file
+one more same string
+fifth line in eighth file
+sixth line in eighth file
+seventh line in eighth file

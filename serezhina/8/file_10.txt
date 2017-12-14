@@ -1,0 +1,8 @@
+first line in tenth file
+second line in tenth file
+third line in tenth file
+fourth line in seventh file
+one more same string
+fifth line in tenth file
+sixth line in seventh file
+seventh line in tenth file

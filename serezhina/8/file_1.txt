@@ -1,0 +1,9 @@
+first line in first file
+second line in first file
+third line in first file
+fourth line in first file
+fifth line in first file
+same string
+sixth line in first file
+seventh line in first file
+one more same string
